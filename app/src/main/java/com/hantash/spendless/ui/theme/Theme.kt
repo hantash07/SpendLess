@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val LightColorScheme = lightColorScheme(
-    primary = Primary,
-    secondary = Secondary,
+    primary = PrimaryContainer,
+    secondary = SecondaryContainer,
     tertiary = Tertiary,
 
     background = Background,

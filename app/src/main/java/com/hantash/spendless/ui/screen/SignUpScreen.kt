@@ -25,7 +25,7 @@ import com.hantash.spendless.ui.theme.OnSurfaceVariant
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreen(navController: NavHostController? = null) {
+fun SignUpScreen(navController: NavHostController? = null) {
     Scaffold(
         content = { innerPadding ->
             Column(
@@ -40,11 +40,12 @@ fun LoginScreen(navController: NavHostController? = null) {
                     resourceId = R.drawable.ic_logo
                 )
                 Text(
-                    text = "Welcome back!",
-                    style = MaterialTheme.typography.headlineMedium
+                    text = "Welcome to SpendLess!\n" +
+                            "How can we address you?",
+                    style = MaterialTheme.typography.headlineMedium,
                 )
                 Text(
-                    text = "Enter your login details",
+                    text = "Create unique username",
                     style = MaterialTheme.typography.bodyLarge,
                     color = OnSurfaceVariant
                 )
@@ -52,27 +53,21 @@ fun LoginScreen(navController: NavHostController? = null) {
                 AppInputField(
                     modifier = Modifier.fillMaxWidth(),
                     onValueChange = {},
-                    placeHolder = "Username",
+                    placeHolder = "username",
                     value = ""
-                )
-                AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
-                AppInputField(
-                    modifier = Modifier.fillMaxWidth(),
-                    onValueChange = {},
-                    placeHolder = "PIN",
                 )
                 AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
                 AppButton(
                     modifier = Modifier.fillMaxWidth()
                         .height(48.dp),
-                    name = "Log in") {
+                    name = "Next") {
 
                 }
                 AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
                 AppTextButton(
                     modifier = Modifier.fillMaxWidth()
                         .height(48.dp),
-                    name = "New to SpendLess?"
+                    name = "Already have an account?"
                 ) {
 
                 }

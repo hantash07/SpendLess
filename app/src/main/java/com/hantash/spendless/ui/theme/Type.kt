@@ -5,6 +5,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.hantash.spendless.R
 
@@ -29,12 +30,14 @@ val Typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 45.sp,
         lineHeight = 52.sp,
+        textAlign = TextAlign.Center
     ),
     displayMedium = TextStyle(
         fontFamily = figtree,
         fontWeight = FontWeight.SemiBold,
         fontSize = 36.sp,
         lineHeight = 44.sp,
+        textAlign = TextAlign.Center
     ),
 
     headlineLarge = TextStyle(
@@ -42,12 +45,14 @@ val Typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 32.sp,
         lineHeight = 40.sp,
+        textAlign = TextAlign.Center
     ),
     headlineMedium = TextStyle(
         fontFamily = figtree,
         fontWeight = FontWeight.SemiBold,
         fontSize = 28.sp,
         lineHeight = 34.sp,
+        textAlign = TextAlign.Center
     ),
 
     titleLarge = TextStyle(
