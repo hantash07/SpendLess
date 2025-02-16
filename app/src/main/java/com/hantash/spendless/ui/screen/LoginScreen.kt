@@ -21,6 +21,7 @@ import com.hantash.spendless.ui.component.AppInputField
 import com.hantash.spendless.ui.component.AppSpacer
 import com.hantash.spendless.ui.component.AppTextButton
 import com.hantash.spendless.ui.component.EnumSpacer
+import com.hantash.spendless.ui.theme.OnSurface
 import com.hantash.spendless.ui.theme.OnSurfaceVariant
 
 @Preview(showBackground = true)
@@ -41,7 +42,8 @@ fun LoginScreen(navController: NavHostController? = null) {
                 )
                 Text(
                     text = "Welcome back!",
-                    style = MaterialTheme.typography.headlineMedium
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = OnSurface
                 )
                 Text(
                     text = "Enter your login details",

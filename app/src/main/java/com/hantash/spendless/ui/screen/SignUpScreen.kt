@@ -3,8 +3,9 @@ package com.hantash.spendless.ui.screen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import com.hantash.spendless.ui.component.AppInputField
 import com.hantash.spendless.ui.component.AppSpacer
 import com.hantash.spendless.ui.component.AppTextButton
 import com.hantash.spendless.ui.component.EnumSpacer
+import com.hantash.spendless.ui.theme.OnSurface
 import com.hantash.spendless.ui.theme.OnSurfaceVariant
 
 @Preview(showBackground = true)
@@ -43,6 +45,7 @@ fun SignUpScreen(navController: NavHostController? = null) {
                     text = "Welcome to SpendLess!\n" +
                             "How can we address you?",
                     style = MaterialTheme.typography.headlineMedium,
+                    color = OnSurface
                 )
                 Text(
                     text = "Create unique username",
@@ -58,15 +61,11 @@ fun SignUpScreen(navController: NavHostController? = null) {
                 )
                 AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
                 AppButton(
-                    modifier = Modifier.fillMaxWidth()
-                        .height(48.dp),
-                    name = "Next") {
-
+                    name = "Next",
+                    imageVector = Icons.AutoMirrored.Default.ArrowForward) {
                 }
                 AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
                 AppTextButton(
-                    modifier = Modifier.fillMaxWidth()
-                        .height(48.dp),
                     name = "Already have an account?"
                 ) {
 
