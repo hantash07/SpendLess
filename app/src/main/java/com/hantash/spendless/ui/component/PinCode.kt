@@ -39,15 +39,15 @@ import com.hantash.spendless.ui.theme.PrimaryFixed
 @Composable
 fun PinCode(
     modifier: Modifier = Modifier,
+    pinCode: String = "",
+    pinSize: Int = 5,
+    onPinChange: (String) -> Unit = {}
 ) {
-    var pinLength by remember {
-        mutableIntStateOf(0)
-    }
 
     val buttonList = listOf(
         listOf("1", "2", "3"),
-        listOf("3", "4", "5"),
-        listOf("6", "7", "8"),
+        listOf("4", "5", "6"),
+        listOf("7", "8", "9"),
         listOf("", "0", "-"),
     )
 
@@ -56,14 +56,15 @@ fun PinCode(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AppSpacer(value = 32.dp, EnumSpacer.HEIGHT)
+
         //Pin Indicators UI
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            repeat(5) { index ->
+            repeat(pinSize) { index ->
                 Box(
                     modifier = modifier
                         .size(18.dp)
                         .background(
-                            color = if (index < pinLength) Primary else OnBackground.copy(alpha = 0.12f),
+                            color = if (index < pinCode.length) Primary else OnBackground.copy(alpha = 0.12f),
                             shape = CircleShape
                         )
                 )
@@ -76,13 +77,7 @@ fun PinCode(
         buttonList.forEach { innerButtons ->
             Row {
                 innerButtons.forEach { button ->
-                    PadItem(value = button, onClick = {
-                        if (button == "-") {
-                            pinLength = (pinLength - 1).coerceAtLeast(0)
-                        } else if (button.isNotEmpty()) {
-                            pinLength = (pinLength + 1).coerceAtMost(5)
-                        }
-                    })
+                    PadItem(value = button, onPinChange = onPinChange)
                 }
             }
         }
@@ -91,7 +86,7 @@ fun PinCode(
 
 @Preview(showBackground = true)
 @Composable
-private fun PadItem(value: String = "0", onClick: () -> Unit = {}) {
+private fun PadItem(value: String = "0", onPinChange: (String) -> Unit = {}) {
     Box(
         modifier = Modifier
             .padding(2.dp)
@@ -101,7 +96,7 @@ private fun PadItem(value: String = "0", onClick: () -> Unit = {}) {
                     if (value == "-") PrimaryFixed.copy(alpha = 0.30f) else Color.Transparent,
                 shape = RoundedCornerShape(corner = CornerSize(32.dp))
             )
-            .clickable { if (value.isNotEmpty()) onClick.invoke() },
+            .clickable { if (value.isNotEmpty()) onPinChange.invoke(value) },
         contentAlignment = Alignment.Center
     ) {
         if (value != "-") {

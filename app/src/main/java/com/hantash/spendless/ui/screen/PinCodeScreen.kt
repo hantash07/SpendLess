@@ -1,5 +1,7 @@
 package com.hantash.spendless.ui.screen
 
+import android.util.Log
+import androidx.collection.mutableIntListOf
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +10,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +32,10 @@ import com.hantash.spendless.ui.theme.OnSurfaceVariant
 @Preview(showBackground = true)
 @Composable
 fun PinCodeScreen(navController: NavHostController? = null) {
+    var pinCode by remember {
+        mutableStateOf("")
+    }
+
     Scaffold(
         content = { innerPadding ->
             Box(
@@ -33,7 +43,7 @@ fun PinCodeScreen(navController: NavHostController? = null) {
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                AppBackButton()
+                AppBackButton(onButtonClick = {})
                 Column(
                     modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -51,7 +61,17 @@ fun PinCodeScreen(navController: NavHostController? = null) {
                         text = "Use PIN to login to your account",
                         style = MaterialTheme.typography.bodyLarge
                     )
-                    PinCode()
+                    PinCode(
+                        pinCode = pinCode,
+                        onPinChange = { pin ->
+                            if (pin == "-") {
+                                pinCode = pinCode.dropLast(1)
+                            } else if (pin.isNotEmpty()) {
+                                pinCode += pin
+                            }
+                            Log.d("app-debug", "PINCODE: $pinCode")
+                        }
+                    )
                 }
             }
         }
