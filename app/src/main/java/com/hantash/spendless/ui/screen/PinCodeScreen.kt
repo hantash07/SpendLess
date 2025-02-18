@@ -63,13 +63,13 @@ fun PinCodeScreen(navController: NavHostController? = null) {
                     )
                     PinCode(
                         pinCode = pinCode,
-                        onPinChange = { pin ->
+                        onChange = { pin ->
                             if (pin == "-") {
                                 pinCode = pinCode.dropLast(1)
                             } else if (pin.isNotEmpty()) {
                                 pinCode += pin
                             }
-                            Log.d("app-debug", "PINCODE: $pinCode")
+                            Log.d("app-debug", "Entered Pin: $pinCode")
                         }
                     )
                 }

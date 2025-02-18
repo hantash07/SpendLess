@@ -40,11 +40,11 @@ import com.hantash.spendless.ui.theme.PrimaryFixed
 fun PinCode(
     modifier: Modifier = Modifier,
     pinCode: String = "",
-    pinSize: Int = 5,
-    onPinChange: (String) -> Unit = {}
+    size: Int = 5,
+    onChange: (String) -> Unit = {}
 ) {
 
-    val buttonList = listOf(
+    val pinList = listOf(
         listOf("1", "2", "3"),
         listOf("4", "5", "6"),
         listOf("7", "8", "9"),
@@ -59,7 +59,7 @@ fun PinCode(
 
         //Pin Indicators UI
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            repeat(pinSize) { index ->
+            repeat(size) { index ->
                 Box(
                     modifier = modifier
                         .size(18.dp)
@@ -74,19 +74,18 @@ fun PinCode(
         AppSpacer(value = 32.dp, EnumSpacer.HEIGHT)
 
         //Number Pad UI
-        buttonList.forEach { innerButtons ->
+        pinList.forEach { pin ->
             Row {
-                innerButtons.forEach { button ->
-                    PadItem(value = button, onPinChange = onPinChange)
+                pin.forEach { button ->
+                    PadItem(button, pinCode, size, onChange = onChange)
                 }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-private fun PadItem(value: String = "0", onPinChange: (String) -> Unit = {}) {
+private fun PadItem(value: String, code: String, size: Int, onChange: (String) -> Unit) {
     Box(
         modifier = Modifier
             .padding(2.dp)
@@ -96,7 +95,7 @@ private fun PadItem(value: String = "0", onPinChange: (String) -> Unit = {}) {
                     if (value == "-") PrimaryFixed.copy(alpha = 0.30f) else Color.Transparent,
                 shape = RoundedCornerShape(corner = CornerSize(32.dp))
             )
-            .clickable { if (value.isNotEmpty()) onPinChange.invoke(value) },
+            .clickable { if ((value.isNotEmpty() && code.length < size) || value == "-") onChange.invoke(value) },
         contentAlignment = Alignment.Center
     ) {
         if (value != "-") {
