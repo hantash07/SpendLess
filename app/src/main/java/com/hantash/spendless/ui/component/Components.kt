@@ -162,12 +162,13 @@ fun AppInputField(
 fun AppButton(
     modifier: Modifier = Modifier.fillMaxWidth()
         .height(48.dp),
-    name: String = "Name",
+    name: String = "",
     imageVector: ImageVector? = null,
     onClick: () -> Unit = {}
 ) {
     Button(
         modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
         onClick = onClick
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

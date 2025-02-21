@@ -5,10 +5,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import com.hantash.spendless.ui.navigation.EnumScreen
+import com.hantash.spendless.ui.theme.OnSurface
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -18,7 +20,11 @@ fun AppTopBar(
     onBackButtonClick: () -> Unit = {}
 ) {
     TopAppBar(
-        title = { Text(title) },
+        title = { Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            color = OnSurface
+        ) },
         navigationIcon = {
             AppBackButton(onButtonClick = {onBackButtonClick.invoke()})
         }
