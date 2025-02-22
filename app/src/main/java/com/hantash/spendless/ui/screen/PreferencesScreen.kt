@@ -10,6 +10,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,14 +21,24 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.hantash.spendless.ui.component.AppButton
 import com.hantash.spendless.ui.component.AppCard
+import com.hantash.spendless.ui.component.AppDropDownMenu
 import com.hantash.spendless.ui.component.AppSpacer
 import com.hantash.spendless.ui.component.AppTopBar
 import com.hantash.spendless.ui.component.EnumSpacer
 import com.hantash.spendless.ui.component.SegmentButtonController
+import com.hantash.spendless.ui.component.currencyList
+import com.hantash.spendless.utils.debug
 
 @Preview(showBackground = true)
 @Composable
 fun PreferencesScreen(navController: NavController? = null) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+    var currency by remember {
+        mutableStateOf(currencyList.first())
+    }
+
     Scaffold(
         topBar = {
             AppTopBar(title = "Preferences")
@@ -66,7 +80,23 @@ fun PreferencesScreen(navController: NavController? = null) {
                 )
 
                 AppSpacer(value = 16.dp, EnumSpacer.HEIGHT)
-
+                Text(
+                    text = "Currency",
+                    style = MaterialTheme.typography.labelSmall
+                )
+                AppSpacer(value = 4.dp, EnumSpacer.HEIGHT)
+                AppDropDownMenu(
+                    items = currencyList,
+                    selectedItem = currency,
+                    onSelectItem = { item ->
+                        currency = item
+                    },
+                    expanded = expanded,
+                    onExpandedChange = {
+                        expanded = !expanded
+                        debug("Expanded: $expanded")
+                    }
+                )
 
                 SegmentButtonController(
                     modifier = Modifier.padding(top = 16.dp),

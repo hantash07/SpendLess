@@ -7,15 +7,16 @@ import androidx.navigation.compose.rememberNavController
 import com.hantash.spendless.ui.component.PinCode
 import com.hantash.spendless.ui.screen.LoginScreen
 import com.hantash.spendless.ui.screen.PinCodeScreen
+import com.hantash.spendless.ui.screen.PreferencesScreen
 
 @Composable
 fun ScreenNavigation() {
     val navController = rememberNavController()
-    val defaultScreen = EnumScreen.PIN_CODE.name
+    val defaultScreen = EnumScreen.PREFERENCES.name
 
     NavHost(navController = navController, startDestination = defaultScreen) {
         composable(defaultScreen) {
-            PinCodeScreen(navController)
+            PreferencesScreen(navController)
         }
     }
 }
